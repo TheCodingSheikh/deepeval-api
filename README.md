@@ -10,7 +10,7 @@ Integrating the `deepeval` package directly into applications can lead to confli
 
 ### Option 1: Run with Docker
 ```bash
-docker run -d -p 8000:8000 -e MODEL_NAME="your-model-name" -e BASE_URL="http://your-base-url" -e API_KEY="your-api-key" thecodingsheikh/deepeval-api
+docker run -d -p 8000:8000 -e USE_LOCAL_MODEL="true" -e MODEL_NAME="your-model-name" -e BASE_URL="http://your-base-url" -e API_KEY="your-api-key" thecodingsheikh/deepeval-api
 ```
 
 ### Option 2: Deploy with Helm
@@ -33,7 +33,7 @@ Refer to the [Helm chart documentation](https://github.com/TheCodingSheikh/helm-
     "input": "What is the capital of France?",
     "actual_output": "The capital of France is Paris."
   },
-  "metric_name": "AnswerRelevancy",
+  "metric_name": "AnswerRelevancyMetric",
   "metric_params": {"threshold": 0.5}
 }
 ```
@@ -59,7 +59,7 @@ Refer to the [Helm chart documentation](https://github.com/TheCodingSheikh/helm-
       {"input": "I need to open a new account.", "actual_output": "Of course! Can I get your name, please?"}
     ]
   },
-  "metric_name": "KnowledgeRetention",
+  "metric_name": "KnowledgeRetentionMetric",
   "metric_params": {"threshold": 0.6}
 }
 ```
@@ -89,7 +89,7 @@ Refer to the [Helm chart documentation](https://github.com/TheCodingSheikh/helm-
       "actual_output": "Why did the scarecrow win an award? Because he was outstanding in his field."
     }
   ],
-  "metric_names": ["Hallucination"],
+  "metric_names": ["HallucinationMetric"],
   "run_async": true
 }
 ```
@@ -128,7 +128,7 @@ Refer to the [Helm chart documentation](https://github.com/TheCodingSheikh/helm-
       ]
     }
   ],
-  "metric_names": ["ConversationCompleteness"],
+  "metric_names": ["ConversationCompletenessMetric"],
   "run_async": true
 }
 ```
