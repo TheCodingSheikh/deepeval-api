@@ -11,10 +11,6 @@ from deepeval.metrics import (
     ContextualRelevancyMetric,
     ContextualPrecisionMetric,
     ContextualRecallMetric,
-    RAGASAnswerRelevancyMetric,
-    RAGASFaithfulnessMetric,
-    RAGASContextualRecallMetric,
-    RAGASContextualPrecisionMetric,
     ToxicityMetric,
     BiasMetric,
     GEval,
@@ -22,6 +18,7 @@ from deepeval.metrics import (
     ConversationCompletenessMetric,
     ConversationRelevancyMetric
 )
+from deepeval.metrics.ragas import RagasMetric
 from deepeval import evaluate
 import os
 
@@ -35,10 +32,7 @@ METRIC_CLASSES = {
     "ContextualRelevancyMetric": ContextualRelevancyMetric,
     "ContextualPrecisionMetric": ContextualPrecisionMetric,
     "ContextualRecallMetric": ContextualRecallMetric,
-    "RAGASAnswerRelevancyMetric": RAGASAnswerRelevancyMetric,
-    "RAGASFaithfulnessMetric": RAGASFaithfulnessMetric,
-    "RAGASContextualRecallMetric": RAGASContextualRecallMetric,
-    "RAGASContextualPrecisionMetric": RAGASContextualPrecisionMetric,
+    "RagasMetric": RagasMetric,
     "ToxicityMetric": ToxicityMetric,
     "BiasMetric": BiasMetric,
     "GEval": GEval
