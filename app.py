@@ -1,3 +1,4 @@
+from typing import Dict, Union
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
@@ -10,7 +11,10 @@ from deepeval.metrics import (
     ContextualRelevancyMetric,
     ContextualPrecisionMetric,
     ContextualRecallMetric,
-    RagasMetric,
+    RAGASAnswerRelevancyMetric,
+    RAGASFaithfulnessMetric,
+    RAGASContextualRecallMetric,
+    RAGASContextualPrecisionMetric,
     ToxicityMetric,
     BiasMetric,
     GEval,
@@ -18,28 +22,32 @@ from deepeval.metrics import (
     ConversationCompletenessMetric,
     ConversationRelevancyMetric
 )
+from deepeval import evaluate
 import os
 
 app = FastAPI()
 
 METRIC_CLASSES = {
-    "AnswerRelevancy": AnswerRelevancyMetric,
-    "Hallucination": HallucinationMetric,
-    "Summarization": SummarizationMetric,
-    "Faithfulness": FaithfulnessMetric,
-    "ContextualRelevancy": ContextualRelevancyMetric,
-    "ContextualPrecision": ContextualPrecisionMetric,
-    "ContextualRecall": ContextualRecallMetric,
-    "Ragas": RagasMetric,
-    "Toxicity": ToxicityMetric,
-    "Bias": BiasMetric,
+    "AnswerRelevancyMetric": AnswerRelevancyMetric,
+    "HallucinationMetric": HallucinationMetric,
+    "SummarizationMetric": SummarizationMetric,
+    "FaithfulnessMetric": FaithfulnessMetric,
+    "ContextualRelevancyMetric": ContextualRelevancyMetric,
+    "ContextualPrecisionMetric": ContextualPrecisionMetric,
+    "ContextualRecallMetric": ContextualRecallMetric,
+    "RAGASAnswerRelevancyMetric": RAGASAnswerRelevancyMetric,
+    "RAGASFaithfulnessMetric": RAGASFaithfulnessMetric,
+    "RAGASContextualRecallMetric": RAGASContextualRecallMetric,
+    "RAGASContextualPrecisionMetric": RAGASContextualPrecisionMetric,
+    "ToxicityMetric": ToxicityMetric,
+    "BiasMetric": BiasMetric,
     "GEval": GEval
 }
 
 CONVERSATIONAL_METRIC_CLASSES = {
-    "KnowledgeRetention": KnowledgeRetentionMetric,
-    "ConversationCompleteness": ConversationCompletenessMetric,
-    "ConversationRelevancy": ConversationRelevancyMetric
+    "KnowledgeRetentionMetric": KnowledgeRetentionMetric,
+    "ConversationCompletenessMetric": ConversationCompletenessMetric,
+    "ConversationRelevancyMetric": ConversationRelevancyMetric
 }
 
 class LLMTestCaseRequest(BaseModel):
