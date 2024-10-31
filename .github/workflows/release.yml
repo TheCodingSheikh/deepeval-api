@@ -1,10 +1,10 @@
 name: Tag, Build, and Push Docker Image
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   tag-and-push:
